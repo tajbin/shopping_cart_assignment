@@ -54,77 +54,81 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: SizedBox(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "My Bag",
-                    style: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87),
-                  ),
-                  const SizedBox(height: 16),
-                  Stack(
-                    children: [
-                      _buildProductList(),
-                    ],
-                  ),
-
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-              Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Total Amount",style:TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black45
+                      const Text(
+                        "My Bag",
+                        style: TextStyle(
+                            fontSize: 34,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87),
                       ),
+                      const SizedBox(height: 16),
+                      Stack(
+                        children: [
+                          _buildProductList(),
+                        ],
                       ),
-                      Text(
-                      "$totalPrice\$"
-                      ,style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black
-                      ),),
+
                     ],
                   ),
-                const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: 428,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                  Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Total Amount",style:TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black45
                           ),
-                        ),
-                        onPressed: _showCheckoutSnackBar, child: const Text("CHECK OUT")),
-                  )
+                          ),
+                          Text(
+                          "$totalPrice\$"
+                          ,style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black
+                          ),),
+                        ],
+                      ),
+                    const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)
+                              ),
+                            ),
+                            onPressed: _showCheckoutSnackBar, child: const Text("CHECK OUT")),
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }
@@ -382,7 +386,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             actions: <Widget>[
               SizedBox(
-                width: 328,
+                width: double.infinity,
+                height: 40,
                 child: ElevatedButton(
                     onPressed: (){
                   Navigator.of(context).pop();
